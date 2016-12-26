@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.0">
+<meta name="author" content="DropBox Account - &lt;martin.quickman@yahoo.co.uk&gt;">
+<title>Dropbox News</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic|Noto+Serif:400,400italic,700,700italic|Droid+Sans+Mono:400">
+<link rel="stylesheet" href="./asciidoctor.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
+</head>
+<body class="article toc2 toc-left">
+<div id="header">
+<h1>Dropbox News</h1>
+<div class="details">
+<span id="author" class="author">DropBox Account - &lt;martin.quickman@yahoo.co.uk&gt;</span><br>
+<span id="revnumber">version 1.0,</span>
+<span id="revdate">2014-01-01, wzero</span>
+</div>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_introduction">Introduction</a></li>
+<li><a href="#_read_more_here">Read More Here</a></li>
+<li><a href="#_setup">Setup</a></li>
+<li><a href="#_choose_from">Choose From</a>
+<ul class="sectlevel2">
+<li><a href="#_triggering_the_chooser_from_javascript">Triggering the Chooser from JavaScript</a></li>
+<li><a href="#_handling_the_response">Handling the response</a></li>
+<li><a href="#_link_types">Link types</a></li>
+<li><a href="#_file_types">File Types</a></li>
+</ul>
+</li>
+<li><a href="#_supported_browsers">Supported Browsers</a></li>
+<li><a href="#_saving_stuff">Saving Stuff</a>
+<ul class="sectlevel2">
+<li><a href="#_setup_2">Setup</a></li>
+<li><a href="#_a_saver_button">A Saver Button</a></li>
+<li><a href="#_programmatically_creating_saver_buttons">Programmatically creating Saver buttons</a></li>
+<li><a href="#_saver_from_javascript">Saver from JavaScript</a></li>
+<li><a href="#_supported_browsers_2">Supported browsers</a></li>
+</ul>
+</li>
+<li><a href="#_button_test">Button Test</a></li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/3.2.1/css/font-awesome.min.css">
+</div>
+</div>
+<div class="sect1">
+<h2 id="_introduction">Introduction</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Eventually, you&#8217;ll need to tell Dropbox which application is to use this box. In the example, the app is named <strong>CaelyfDoctor</strong> -</p>
+</div>
+<div class="ulist">
+<div class="title">using dropin details as :</div>
+<ul>
+<li>
+<p>App Name:CaelyfDoctor</p>
+</li>
+<li>
+<p>App key:rez2fqohg4wcgqa</p>
+</li>
+<li>
+<p>Publisher: jnorthr</p>
+</li>
+<li>
+<p>Website App: CaelyfDoctor.de.a9sapp.eu</p>
+</li>
+<li>
+<p>temporary edclared as CaelyfCloud9.de.a9sapp.eu until CaelyfDoctor is up</p>
+</li>
+</ul>
+</div>
+<hr>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+See <a href="https://www.dropbox.com/developers/dropins/chooser/js">Chooser Example</a>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_read_more_here">Read More Here</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.dropbox.com/developers/dropins/chooser/js">The Chooser</a></p>
+</li>
+<li>
+<p><a href="https://www.dropbox.com/home/Saves">Dropbox Saves</a> - if you are logged on as martin</p>
+</li>
+<li>
+<p><a href="https://www.dropbox.com/developers/dropins/saver">JavaScript Saver API</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_setup">Setup</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The first step in adding the Chooser to your app is to create a Drop-in app. Drop-in apps don&#8217;t require the production approval step that other Dropbox apps do. You can publish your integration to your users as soon as you&#8217;re ready.</p>
+</div>
+<div class="paragraph">
+<p>When you create a Chooser app for the web, you&#8217;ll need to provide the domain names where your app is hosted. This lets us stop other websites from trying to impersonate your app. If you&#8217;re developing locally, you can use localhost as the domain name as well.</p>
+</div>
+<div class="paragraph">
+<p>Once you&#8217;ve created a new app, add the following JavaScript snippet to your HTML. Use the pull-down menu below to select your Dropbox app and the app key will be pre-filled for you.</p>
+</div>
+<div class="listingblock">
+<div class="title">Embed Code</div>
+<div class="content">
+<pre>&lt;script type="text/javascript" src="https://www.dropbox.com/static/api/2/dropins.js" id="dropboxjs" data-app-key="rez2fqohg4wcgqa"&gt;&lt;/script&gt;</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_choose_from">Choose From</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_triggering_the_chooser_from_javascript">Triggering the Chooser from JavaScript</h3>
+<div class="paragraph">
+<p>There are two ways to trigger the Chooser on your website. To create the nice styled button you see in the demo above, you can use the following JavaScript:</p>
+</div>
+<div class="listingblock">
+<div class="title">Using Dropbox Button</div>
+<div class="content">
+<pre>var button = Dropbox.createChooseButton(options);
+document.getElementById("container").appendChild(button);</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you prefer to design a custom button instead, you can trigger the Chooser directly from JavaScript using the following method:</p>
+</div>
+<div class="listingblock">
+<div class="title">Use Your Own Button</div>
+<div class="content">
+<pre>Dropbox.choose(options);</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note that the Chooser opens in a pop-up window, so you should only call this function from within a user-triggered event handler such as a tap or click event. Otherwise, the pop-up will likely be blocked by the browser.</p>
+</div>
+<div class="paragraph">
+<p>Both methods take a single options parameter with the following fields:</p>
+</div>
+<div class="listingblock">
+<div class="title">Options</div>
+<div class="content">
+<pre>options = {
+
+    // Required. Called when a user selects an item in the Chooser.
+    success: function(files) {
+        alert("Here's the file link: " + files[0].link)
+    },
+
+    // Optional. Called when the user closes the dialog without selecting a file
+    // and does not include any parameters.
+    cancel: function() {
+
+    },
+
+    // Optional. "preview" (default) is a preview link to the document for sharing,
+    // "direct" is an expiring link to download the contents of the file. For more
+    // information about link types, see Link types below.
+    linkType: "preview", // or "direct"
+
+    // Optional. A value of false (default) limits selection to a single file, while
+    // true enables multiple file selection.
+    multiselect: false, // or true
+
+    // Optional. This is a list of file extensions. If specified, the user will
+    // only be able to select files with these extensions. You may also specify
+    // file types, such as "video" or "images" in the list. For more information,
+    // see File types below. By default, all extensions are allowed.
+    extensions: ['.pdf', '.doc', '.docx'],
+};</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_handling_the_response">Handling the response</h3>
+<div class="paragraph">
+<p>The files parameter in the above success callback function will be an array of file objects, each containing info about the selected file. If multiselect is false, the array will contain a single item. Each file object includes the following fields:</p>
+</div>
+<div class="listingblock">
+<div class="title">Logic To Handle Response</div>
+<div class="content">
+<pre>file = {
+
+    // Name of the file.
+    name: "filename.txt",
+
+    // URL to access the file, which varies depending on the linkType specified when the
+    // Chooser was triggered.
+    link: "https://...",
+
+    // Size of the file in bytes.
+    bytes: 464,
+
+    // URL to a 64x64px icon for the file based on the file's extension.
+    icon: "https://...",
+
+    // A thumbnail URL generated when the user selects images and videos.
+    // If the user didn't select an image or video, no thumbnail will be included.
+    thumbnailLink: "https://...?bounding_box=75&amp;mode=fit",
+};</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_link_types">Link types</h3>
+<div class="paragraph">
+<p>The Chooser can be configured to return one of two link types.</p>
+</div>
+<div class="ulist">
+<div class="title">Types</div>
+<ul>
+<li>
+<p>preview links are the default type of link returned by the Chooser. Preview links point to a human-friendly preview page of a file and are great for sharing. You can read more about links to Dropbox files in our Help Center. Note that users may disable this link at a later point if they choose.</p>
+</li>
+<li>
+<p>direct links point directly to the contents of the file and are useful for downloading the file itself. Unlike preview links, however, they will expire after four hours, so make sure to download the contents of the file immediately after the file is chosen. Direct links also support CORS, which allows you to read the file information directly in the browser using client-side JavaScript. These URLs should not be used to display content directly in the browser.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_file_types">File Types</h3>
+<div class="paragraph">
+<p>Described in this <a href="https://www.dropbox.com/developers/reference/devguide#app-permissions">topic</a>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_supported_browsers">Supported Browsers</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Check if the current browser allows dropbox activity. Use this logic:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Dropbox.isBrowserSupported().</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>to decide.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_saving_stuff">Saving Stuff</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Files saved from your app are instantly available across all of your users' devices. The Saver is a Drop-in component that works on web and mobile web—all with just a few lines of code.</p>
+</div>
+<div class="paragraph">
+<p>Click the button below to see the Saver in action. The demo triggers the Saver in a pop-up window and will ask you to sign in if needed. By default, files are saved to a new <strong>Saves</strong> folder in Dropbox, but you can select an alternate destination as well. Once you press the Save button, the files are uploaded and saved to your Dropbox.</p>
+</div>
+<div class="sect2">
+<h3 id="_setup_2">Setup</h3>
+<div class="paragraph">
+<p>Make a drop-in app - see above.</p>
+</div>
+<div class="listingblock">
+<div class="title">Embed Code</div>
+<div class="content">
+<pre>&lt;script type="text/javascript" src="https://www.dropbox.com/static/api/2/dropins.js" id="dropboxjs" data-app-key="rez2fqohg4wcgqa"&gt;&lt;/script&gt;</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_a_saver_button">A Saver Button</h3>
+<div class="paragraph">
+<p>Read more about the <strong>Saver</strong> button <a href="https://www.dropbox.com/developers/dropins/saver">here</a>.</p>
+</div>
+<div class="paragraph">
+<p>The easiest way to add the Saver to your app is to change a simple link to a Saver button. You can turn any &lt;a&gt; tag into a Saver button just by adding class="dropbox-saver" to it. You can see this below:</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre>&lt;a href="https://dl.dropboxusercontent.com/s/deroi5nwm6u7gdf/advice.png" class="dropbox-saver"&gt;&lt;/a&gt;</pre>
+</div>
+</div>
+<div class="ulist">
+<div class="title">The button takes in the following parameters:</div>
+<ul>
+<li>
+<p><strong>class</strong> Identifies the anchor element as a Saver button. Must have the value <code>dropbox-saver</code>.</p>
+</li>
+<li>
+<p><strong>href</strong> URL of the file the Saver should add to the user&#8217;s Dropbox. The Saver supports HTTP and HTTPS URIs.</p>
+</li>
+<li>
+<p><strong>data-filename</strong> is an optional User-friendly name of the file that should be saved to the user&#8217;s Dropbox; can be included if desired. If not included, the filename is inferred from the <code>href</code>.</p>
+</li>
+</ul>
+</div>
+<hr>
+</div>
+<div class="sect2">
+<h3 id="_programmatically_creating_saver_buttons">Programmatically creating Saver buttons</h3>
+<div class="paragraph">
+<p>Adding the dropbox-saver class to an existing anchor tag is easy if you just need to allow users to save a hardcoded URL. For more dynamic uses, though, you may prefer to create a Save button programmatically by calling Dropbox.createSaveButton. There are two ways to call this function. The simpler call just takes a URL and a filename, as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Dropbox.createSaveButton(url, filename);</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For more advanced use, you can instead pass in an options object. Among other things, this lets you save more than one file at once:</p>
+</div>
+<div class="listingblock">
+<div class="title">Options</div>
+<div class="content">
+<pre>var options = {
+    files: [
+        // You can specify up to 100 files.
+        {'url': '...', 'filename': '...'},
+        {'url': '...', 'filename': '...'},
+        // ...
+    ],
+
+    // Success is called once all files have been successfully added to the user's
+    // Dropbox, although they may not have synced to the user's devices yet.
+    success: function () {},
+
+    // Progress is called periodically to update the application on the progress
+    // of the user's downloads. The value passed to this callback is a float
+    // between 0 and 1. The progress callback is guaranteed to be called at least
+    // once with the value 1.
+    progress: function (progress) {},
+
+    // Cancel is called if the user presses the Cancel button or closes the Saver.
+    cancel: function () {},
+
+    // Error is called in the event of an unexpected response from the server
+    // hosting the files, such as not being able to find a file. This callback is
+    // also called if there is an error on Dropbox or if the user is over quota.
+    error: function (errorMessage) {}
+};
+var button = Dropbox.createSaveButton(options);
+document.getElementById("container").appendChild(button);</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_saver_from_javascript">Saver from JavaScript</h3>
+<div class="paragraph">
+<p>You can trigger the Saver directly from JavaScript by using the following method:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Dropbox.save(url, filename);</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Just like Dropbox.createSaveButton, you can instead pass in an options object with the same options as above:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>var options = { /* ... */ };
+Dropbox.save(options);</pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Note that the Saver opens in a pop-up window, so you should only call this function from within a user-triggered event handler such as a tap or click event. Otherwise, the pop-up will likely be blocked by the browser.
+</td>
+</tr>
+</table>
+</div>
+<hr>
+</div>
+<div class="sect2">
+<h3 id="_supported_browsers_2">Supported browsers</h3>
+<div class="paragraph">
+<p>Not all browsers support the Saver. If a user&#8217;s browser doesn&#8217;t support the Saver, we&#8217;ll gray out the button and show a warning message if you try to call Dropbox.save(). You can check to see if the user&#8217;s browser is supported by calling</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Dropbox.isBrowserSupported().</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_button_test">Button Test</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Ok, here, we try a button to open a chooser:</p>
+</div>
+<div class="paragraph">
+<p><button  id="chooser-demo" onclick="changetext(this)">Click me</button> </p>
+</div>
+<hr>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Done
+</td>
+</tr>
+</table>
+</div>
+<script>
+function changetext(id) {
+    id.innerHTML="Ooops!";
+   Dropbox.choose(options);
+}
+</script>
+
+<script type="text/javascript">
+options = {
+
+    // Required. Called when a user selects an item in the Chooser.
+    success: function(files) {
+        alert("Here's the file link: " + files[0].link)
+    },
+
+    // Optional. Called when the user closes the dialog without selecting a file
+    // and does not include any parameters.
+    cancel: function() {
+        alert("Cancelled chooser ")
+    },
+
+    // Optional. "preview" (default) is a preview link to the document for sharing,
+    // "direct" is an expiring link to download the contents of the file. For more
+    // information about link types, see Link types below.
+    linkType: "preview", // or "direct"
+
+    // Optional. A value of false (default) limits selection to a single file, while
+    // true enables multiple file selection.
+    multiselect: false, // or true
+
+    // Optional. This is a list of file extensions. If specified, the user will
+    // only be able to select files with these extensions. You may also specify
+    // file types, such as "video" or "images" in the list. For more information,
+    // see File types below. By default, all extensions are allowed.
+    extensions: ['.adoc', '.txt','.asciidoc'],
+};
+</script>
+<script type="text/javascript" src="https://www.dropbox.com/static/api/2/dropins.js" id="dropboxjs" data-app-key="rez2fqohg4wcgqa"></script>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Version 1.0<br>
+Last updated 2014-09-15 20:31:17 CEST
+</div>
+</div>
+</body>
+</html>

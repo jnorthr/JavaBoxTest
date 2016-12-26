@@ -1,0 +1,284 @@
+// google analytics needs this ids  as ga:24758242
+http://code.google.com/apis/analytics/docs/gdata/gdataExplorer.html
+https://www.google.com/analytics/reporting/dashboard?id=24758242&esig=0&pdr=20110126-20110225&cmp=average#lts=1298679071074
+
+YOUR I/P DETAILS :
+Your I/P Address : 90.49.221.221
+Country: France
+Region: Bretagne
+City: Ploehedut
+Lat,Lon: 48.700001, -3.0000000
+
+// html5 + css3 support -
+// see: http://findmebyip.com/#target-selector
+What is a Browser?
+
+A “Browser” is a piece of software used to access & display the Internet on your computer. Examples include Internet Explorer, Mozilla Firefox, Opera, Safari and Google Chrome.
+
+Information about your browser and the operating sysem it runs on can be found in the table to the right.
+Browser: Google Chrome
+Browser Version: 9.1
+Operating System: Apple OS X
+User Agent: Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_6; en-US) AppleWebKit/534.13 (KHTML, like Gecko) Chrome/9.0.597.102 Safari/534.13
+
+
+CSS3 Support
+What is CSS3?
+
+CSS3 refers to a number of new in-browser design features available in many modern browsers such as rounded corners or the ability to animate elements without the need for Adobe Flash or JavaScript.
+
+This site uses Modernizr, a javascript library which detects your browsers' support for a selection of the latest CSS3 & HTML5 features. It helps web designers to implement progressive enrichment techniques.
+
+border-radius rounding - done
+rgba - done
+box-shadow - done
+rescalable background size  - done
+border images - done
+CSS Columns - done
+CSS Reflections - done
+CSS 3D Transforms - done
+Flex Box - done
+Opacity - done
+hsla() - done
+text shadow - done
+Multiple background images - done
+CSS Animations - done
+CSS Gradients - done
+CSS 2D Transforms
+CSS Transitions - done
+
+====================================
+HTML5 Support
+HTML5 describes several mechanical techniques begining to gain support from the major browser manufacturers.
+
+These techniques include 'drawing' programatically, establishing your geographic location using your devices GPS, techniques which allow web-applications behave more like installed software and native Video & Audio controls which do not require a third-party plug-in like Adobe Flash.
+
+This site uses Modernizr, a javascript library which detects your browsers' support for the a selection of the latest CSS3 & HTML5 features. It helps web designers to implement progressive enrichment techniques.
+
+@font faces - done
+Canvas Text - done
+HTML5 Video - done
+Local Storage - done
+Window Messaging - done
+Web Workers - done
+Web SQL Database - done
+Touch Events - done
+Hashchange Event - done
+Web Sockets - done
+SVG Clipping Paths - done
+SMIL - done
+Canvas - done
+HTML5 Audio - done
+Geolocation API - done
+Session Storage - done
+Offline Applications Cache - done
+Query Selector - no logic available !!!!!
+IndexDB Database - done
+Drag and Drop - done
+History Management - done
+SVG - done
+Inline SVG - done
+Web GL - done
+
+Audio Formats
+Ogg audio format .ogg - done
+Windows Audio .wav ---- !!!!!!!!!
+MP3 Audio format .mp3 - done
+MPEG4 AAC .Audio format m4a ----- !!!!!!
+
+Video Formats
+Ogg - done
+WebM - Google - done
+H.264 - done
+
+==================================
+HTML5 Forms 2.0 Tests
+The first Web Forms 2.0 Draft appeared as far back as February 2004. Now superseded by the Forms chapter of the HTML5 specification it introduces new elements which offer a wide range of functionality previously only possible with the help of third party scripts.
+
+Your browser's support for basic Web Forms 2.0 is show in the list to the right.
+
+<input type="search"> - done
+<input type="url"> - done
+<input type="datetime"> - done
+<input type="month"> - done
+<input type="time"> - done
+<input type="number"> - done
+<input type="color"> - done
+<input type="tel"> - done
+<input type="email"> - done
+<input type="date"> - done
+<input type="week"> - done
+<input type="datetime-local"> - done
+<input type="range"> - done
+
+<input autocomplete="on"> - done !!
+<input list="mylist"> - done !!
+<input max="100"> - done !!
+<input multiple> - done !!
+<input required> - done !!
+<input autofocus> - done !!!
+<input min="100"> - done !!
+
+<input placeholder="Enter Text"> - done !!!
+<input pattern="[dbs]{3}"> - done
+<input step="3.1415"> - done!!!
+<input size="35"> - done!!!
+<input read-only> - done !!!
+
+===================================
+CSS3 Selector Tests
+What's a CSS3 Selector?
+
+The CSS3 spec defines a series of extremely powerful selectors, many of which can be used today in modern browsers.
+
+The tests to the right are entirely native and rely solely on your browsers support for CSS3 selectors to provide their results.
+
+For an excellent overview of how to use these selectors we suggest
+“CSS 3 selectors explained ” over at 456 Berea St.
+
+An alternative in-depth javascript-based testing tool is also available at CSS3.info.
+
+E[att^="val"]
+E[att*="val"]
+E:nth-child(n)
+E:nth-of-type(n)
+E:last-child
+E:last-of-type
+E:only-of-type
+E:target
+E:disabled
+E:not(s)
+E[att$="val"]
+E:root
+E:nth-last-child(n)
+E:nth-last-of-type(n)
+E:first-of-type
+E:only-child
+E:empty
+E:enabled
+E:checked
+E ~ F
+============================================
+SCRIPT SUPPORT
+What is Script Support?
+
+The following big set of tests come from Peter Higgins' has.js feature detection library for 97 features supported by a browser.
+
+Their inclusion on FMBIP.com is currently very experimental and the has.js library is also not yet entirely stable.
+
+We'll be updating y'all with more information on this as things develop. In the meantime any feedback is welcome and do please checkout the has.js script itself over on github.
+
+activex
+activex-enabled
+array-es5
+array-filter
+array-indexof
+array-lastindexof
+array-reduce
+array-slice-nodelist
+array-every
+array-foreach
+array-isaray
+array-map
+array-reduceright
+array-some
+
+bug-arguments-instanceof-array
+bug-bgimagecache
+bug-computed-values-for-static
+bug-dontenum-enumerable
+bug-es5-trim
+bug-getelementbyid-ids-names
+bug-getelementsbyname
+bug-offset-values-positioned-inside-s
+bug-pre-ignores-newline
+bug-qsa
+bug-readonly-element-name
+bug-script-rejects-textnode-append
+bug-string-replace-ignores-functions
+bug-table-innerhtml
+bug-typeof-nodelist-function
+bug-array-concat-arguments
+bug-computed-style-hidden-zero-height
+bug-contains
+bug-es5-regexp
+bug-function-expression
+bug-getelementbyid-ignores-case
+bug-getelementsbytagname-returns-
+bug-overflow-style
+bug-properties-are-attributes
+bug-query-selector-ignores-caps
+bug-root-children-not-styled
+bug-select-innerhtml
+bug-string-split-regexp
+bug-tofixed-rounding
+bug-xpath-position
+
+date-now
+date-tojson
+date-toisostring
+dom
+dom-attrmodified
+dom-computed-style
+dom-createelementns
+dom-dataset
+dom-element-do-scroll
+dom-quirks
+dom-subtreemodified
+dom-addeventlistener
+dom-children
+dom-create-attr
+dom-current-style
+dom-dynamic-base
+dom-html5-elements
+dom-selectable
+dom-tagname-uppercase
+eval-global-scope
+event-contextmenu
+event-preventdefault
+event-srcelement
+event-metakey
+event-relatedtarget
+event-stoppropagation
+function-bind
+function-caller
+js-enabled-direct
+js-enabled-lazy-now
+js-enabled-lazy
+json-parse
+json-stringify
+native-console
+native-crosswindowmessaging
+native-geolocation
+native-indexeddb
+native-navigator
+native-sessionstorage
+native-sql-db
+native-worker
+native-xhr-uploadevents
+native-cors-xhr
+native-eventsource
+native-history-state
+native-localstorage
+native-orientation
+native-sharedworker
+native-websockets
+native-xhr
+object-__proto__
+object-defineproperties
+object-es5
+object-getownpropertydescriptor
+object-getprototypeof
+object-isfrozen
+object-keys
+object-seal
+object-create
+object-defineproperty
+object-freeze
+object-getownpropertynames
+object-isextensible
+object-issealed
+object-preventextensions
+script-async
+script-defer
+string-trim

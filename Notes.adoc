@@ -1,0 +1,303 @@
+= Dropbox News
+DropBox Account - <martin.quickman@yahoo.co.uk>
+v1.0, 2014-01-01, wzero
+:icons: font
+:linkattrs:
+:linkcss:
+:toc: left
+
+++++
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/3.2.1/css/font-awesome.min.css">
+++++
+
+== Introduction 
+
+Eventually, you'll need to tell Dropbox which application is to use this box. In the example, the app is named *CaelyfDoctor* -
+
+.using dropin details as :
+ * App Name:CaelyfDoctor
+ * App key:rez2fqohg4wcgqa
+ * Publisher: jnorthr
+ * Website App: CaelyfDoctor.de.a9sapp.eu
+ * temporary edclared as CaelyfCloud9.de.a9sapp.eu until CaelyfDoctor is up
+
+'''
+
+TIP: See https://www.dropbox.com/developers/dropins/chooser/js[Chooser Example]
+
+== Read More Here
+
+ * https://www.dropbox.com/developers/dropins/chooser/js[The Chooser]
+ * https://www.dropbox.com/home/Saves[Dropbox Saves] - if you are logged on as martin
+ * https://www.dropbox.com/developers/dropins/saver[JavaScript Saver API]
+
+== Setup
+
+The first step in adding the Chooser to your app is to create a Drop-in app. Drop-in apps don't require the production approval step that other Dropbox apps do. You can publish your integration to your users as soon as you're ready.
+
+When you create a Chooser app for the web, you'll need to provide the domain names where your app is hosted. This lets us stop other websites from trying to impersonate your app. If you're developing locally, you can use localhost as the domain name as well.
+
+Once you've created a new app, add the following JavaScript snippet to your HTML. Use the pull-down menu below to select your Dropbox app and the app key will be pre-filled for you.
+
+.Embed Code
+----
+<script type="text/javascript" src="https://www.dropbox.com/static/api/2/dropins.js" id="dropboxjs" data-app-key="rez2fqohg4wcgqa"></script>
+----
+
+== Choose From
+
+=== Triggering the Chooser from JavaScript
+
+There are two ways to trigger the Chooser on your website. To create the nice styled button you see in the demo above, you can use the following JavaScript:
+
+.Using Dropbox Button
+----
+var button = Dropbox.createChooseButton(options);
+document.getElementById("container").appendChild(button);
+----
+
+If you prefer to design a custom button instead, you can trigger the Chooser directly from JavaScript using the following method:
+
+.Use Your Own Button
+----
+Dropbox.choose(options);
+----
+
+Note that the Chooser opens in a pop-up window, so you should only call this function from within a user-triggered event handler such as a tap or click event. Otherwise, the pop-up will likely be blocked by the browser.
+
+Both methods take a single options parameter with the following fields:
+
+.Options
+----
+options = {
+
+    // Required. Called when a user selects an item in the Chooser.
+    success: function(files) {
+        alert("Here's the file link: " + files[0].link)
+    },
+
+    // Optional. Called when the user closes the dialog without selecting a file
+    // and does not include any parameters.
+    cancel: function() {
+
+    },
+
+    // Optional. "preview" (default) is a preview link to the document for sharing,
+    // "direct" is an expiring link to download the contents of the file. For more
+    // information about link types, see Link types below.
+    linkType: "preview", // or "direct"
+
+    // Optional. A value of false (default) limits selection to a single file, while
+    // true enables multiple file selection.
+    multiselect: false, // or true
+
+    // Optional. This is a list of file extensions. If specified, the user will
+    // only be able to select files with these extensions. You may also specify
+    // file types, such as "video" or "images" in the list. For more information,
+    // see File types below. By default, all extensions are allowed.
+    extensions: ['.pdf', '.doc', '.docx'],
+};
+----
+
+=== Handling the response
+
+The files parameter in the above success callback function will be an array of file objects, each containing info about the selected file. If multiselect is false, the array will contain a single item. Each file object includes the following fields:
+
+.Logic To Handle Response
+----
+file = {
+
+    // Name of the file.
+    name: "filename.txt",
+
+    // URL to access the file, which varies depending on the linkType specified when the
+    // Chooser was triggered.
+    link: "https://...",
+
+    // Size of the file in bytes.
+    bytes: 464,
+
+    // URL to a 64x64px icon for the file based on the file's extension.
+    icon: "https://...",
+
+    // A thumbnail URL generated when the user selects images and videos.
+    // If the user didn't select an image or video, no thumbnail will be included.
+    thumbnailLink: "https://...?bounding_box=75&mode=fit",
+};
+----
+
+=== Link types
+
+The Chooser can be configured to return one of two link types.
+
+.Types
+ * preview links are the default type of link returned by the Chooser. Preview links point to a human-friendly preview page of a file and are great for sharing. You can read more about links to Dropbox files in our Help Center. Note that users may disable this link at a later point if they choose.
+ * direct links point directly to the contents of the file and are useful for downloading the file itself. Unlike preview links, however, they will expire after four hours, so make sure to download the contents of the file immediately after the file is chosen. Direct links also support CORS, which allows you to read the file information directly in the browser using client-side JavaScript. These URLs should not be used to display content directly in the browser.
+
+
+=== File Types
+
+Described in this https://www.dropbox.com/developers/reference/devguide#app-permissions[topic].
+
+== Supported Browsers
+
+Check if the current browser allows dropbox activity. Use this logic:
+
+----
+Dropbox.isBrowserSupported().
+----
+
+to decide.
+
+== Saving Stuff
+
+Files saved from your app are instantly available across all of your users' devices. The Saver is a Drop-in component that works on web and mobile web—all with just a few lines of code.
+
+Click the button below to see the Saver in action. The demo triggers the Saver in a pop-up window and will ask you to sign in if needed. By default, files are saved to a new *Saves* folder in Dropbox, but you can select an alternate destination as well. Once you press the Save button, the files are uploaded and saved to your Dropbox.
+
+=== Setup
+
+Make a drop-in app - see above.
+
+.Embed Code
+----
+<script type="text/javascript" src="https://www.dropbox.com/static/api/2/dropins.js" id="dropboxjs" data-app-key="rez2fqohg4wcgqa"></script>
+----
+
+=== A Saver Button
+
+Read more about the *Saver* button https://www.dropbox.com/developers/dropins/saver[here].
+
+The easiest way to add the Saver to your app is to change a simple link to a Saver button. You can turn any <a> tag into a Saver button just by adding class="dropbox-saver" to it. You can see this below:
+
+.Code
+----
+<a href="https://dl.dropboxusercontent.com/s/deroi5nwm6u7gdf/advice.png" class="dropbox-saver"></a>
+----
+
+.The button takes in the following parameters:
+ * *class* Identifies the anchor element as a Saver button. Must have the value `dropbox-saver`.
+ * *href* URL of the file the Saver should add to the user's Dropbox. The Saver supports HTTP and HTTPS URIs.
+ * *data-filename* is an optional User-friendly name of the file that should be saved to the user's Dropbox; can be included if desired. If not included, the filename is inferred from the `href`.
+
+'''
+
+=== Programmatically creating Saver buttons
+
+Adding the dropbox-saver class to an existing anchor tag is easy if you just need to allow users to save a hardcoded URL. For more dynamic uses, though, you may prefer to create a Save button programmatically by calling Dropbox.createSaveButton. There are two ways to call this function. The simpler call just takes a URL and a filename, as follows:
+
+----
+Dropbox.createSaveButton(url, filename);
+----
+
+For more advanced use, you can instead pass in an options object. Among other things, this lets you save more than one file at once:
+
+.Options
+----
+var options = {
+    files: [
+        // You can specify up to 100 files.
+        {'url': '...', 'filename': '...'},
+        {'url': '...', 'filename': '...'},
+        // ...
+    ],
+
+    // Success is called once all files have been successfully added to the user's
+    // Dropbox, although they may not have synced to the user's devices yet.
+    success: function () {},
+
+    // Progress is called periodically to update the application on the progress
+    // of the user's downloads. The value passed to this callback is a float
+    // between 0 and 1. The progress callback is guaranteed to be called at least
+    // once with the value 1.
+    progress: function (progress) {},
+
+    // Cancel is called if the user presses the Cancel button or closes the Saver.
+    cancel: function () {},
+
+    // Error is called in the event of an unexpected response from the server
+    // hosting the files, such as not being able to find a file. This callback is
+    // also called if there is an error on Dropbox or if the user is over quota.
+    error: function (errorMessage) {}
+};
+var button = Dropbox.createSaveButton(options);
+document.getElementById("container").appendChild(button);
+----
+
+=== Saver from JavaScript
+
+You can trigger the Saver directly from JavaScript by using the following method:
+
+----
+Dropbox.save(url, filename);
+----
+
+Just like Dropbox.createSaveButton, you can instead pass in an options object with the same options as above:
+
+----
+var options = { /* ... */ };
+Dropbox.save(options);
+----
+
+TIP: Note that the Saver opens in a pop-up window, so you should only call this function from within a user-triggered event handler such as a tap or click event. Otherwise, the pop-up will likely be blocked by the browser.
+
+'''
+
+=== Supported browsers
+
+Not all browsers support the Saver. If a user's browser doesn't support the Saver, we'll gray out the button and show a warning message if you try to call Dropbox.save(). You can check to see if the user's browser is supported by calling 
+
+----
+Dropbox.isBrowserSupported().
+----
+
+== Button Test
+
+Ok, here, we try a button to open a chooser:
+
++++<button  id="chooser-demo" onclick="changetext(this)">Click me</button> +++
+
+'''
+
+TIP: Done
+
+++++
+<script>
+function changetext(id) {
+    id.innerHTML="Ooops!";
+   Dropbox.choose(options);
+}
+</script>
+
+<script type="text/javascript">
+options = {
+
+    // Required. Called when a user selects an item in the Chooser.
+    success: function(files) {
+        alert("Here's the file link: " + files[0].link)
+    },
+
+    // Optional. Called when the user closes the dialog without selecting a file
+    // and does not include any parameters.
+    cancel: function() {
+        alert("Cancelled chooser ")
+    },
+
+    // Optional. "preview" (default) is a preview link to the document for sharing,
+    // "direct" is an expiring link to download the contents of the file. For more
+    // information about link types, see Link types below.
+    linkType: "preview", // or "direct"
+
+    // Optional. A value of false (default) limits selection to a single file, while
+    // true enables multiple file selection.
+    multiselect: false, // or true
+
+    // Optional. This is a list of file extensions. If specified, the user will
+    // only be able to select files with these extensions. You may also specify
+    // file types, such as "video" or "images" in the list. For more information,
+    // see File types below. By default, all extensions are allowed.
+    extensions: ['.adoc', '.txt','.asciidoc'],
+};
+</script>
+<script type="text/javascript" src="https://www.dropbox.com/static/api/2/dropins.js" id="dropboxjs" data-app-key="rez2fqohg4wcgqa"></script>
+++++
